@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="lolita" default="jar" basedir=".">
+      <property name="project-name" value="lolita"/>
+      <property name="build" value="build"/>
+      <property name="lib" value="WebContent/WEB-INF/lib"/>
+	  <property name="webroot" value="WebContent"/>
+      <property name="src" value="src"/>
+      <property name="build.classes"      value="${build}/classes" />
+      <property name="jar.dir"			  value="jar"/>	
+      <property name="jar-file-name"      value="${project-name}" />
+	
+      <path id="Third-Part Lib">
+            <fileset dir="${lib}">
+            	<!--
+                  <include name="log4j-1.2.17.jar"/>
+                  <include name="mina-core-2.0.7.jar"/> 
+                  <include name="slf4j-api-1.6.6.jar"/> 
+                  <include name="slf4j-log4j12-1.7.5.jar"/>
+                 --> 
+            	     <include name="**/*.jar"/>
+            </fileset>
+      </path>
+	
+      <target name="prepare" >
+            <mkdir dir="${build}"/>
+            <mkdir dir="${build.classes}" />
+            <mkdir dir="${jar.dir}" />
+      </target>
+      <target name="clean" >
+            <delete dir="${build}" />
+            <delete dir="${jar.dir}" />
+      </target>
+ 
+      <target name="compile" depends="clean,prepare">
+      <echo message="Compiling the source code!"/>
+            <javac
+                  srcdir="${src}"
+                  destdir="${build.classes}"
+                  deprecation="true"
+                  failonerror="true" debug="true">
+                  <compilerarg line="-encoding UTF-8 "/>                    
+                  <classpath refid="Third-Part Lib"/> 
+            </javac>
+      </target>
+
+      <target name="jar" depends="compile">
+            <jar destfile="${jar.dir}/${jar-file-name}.jar" basedir="${build.classes}">
+            </jar>
+      	    <!-- <copyfile dest="${jar.dir}" src="${src}/*.xml" overwrite="true"/> -->
+      	    <copy todir="${jar.dir}">
+      	            <fileset dir="${src}">
+      	            	<include name="**/*.xml"/>
+      	            	<include name="**/*.properties"/>
+      	            </fileset>
+      	    </copy>      	
+      	    
+      </target>
+	
+	   <!-- 创建清单文件 -->
+	  <target name="create.manifest" description="创建清单文件">
+	        <manifest file="${dir.java.src}/${file.manifest}">
+	            <attribute name="Built-By" value="lzd" />
+	            <attribute name="Main-Class" value="com.lolita" />
+	            <attribute name="Class-Path" value="lib/log4j-1.2.9.jar lib/classes12.jar lib/joone-engine.jar" />
+	        </manifest>
+	   </target>	 
+	   <target name="deploy" depends="create.manifest" description="打包类文件">
+	        <mkdir dir="${dir.deploy}" />
+	        <mkdir dir="${dir.deploy}/log" />
+	        <jar jarfile="${dir.deploy}/${file.jar}" manifest="${dir.java.src}/${file.manifest}">
+	            <fileset dir="${dir.java.build}" includes="db.properties,config.properties,log4j.properties,com/mfsoft/net/task/*.class,com/mfsoft/credit/modelmang/operation/*.class,
+	            com/mfsoft/net/datatranslate/*.class,com/mfsoft/net/pre/*.class,com/mfsoft/icity/platform/database/*.class,com/mfsoft/icity/platform/datashare/*.class,
+	            com/mfsoft/icity/platform/publicclass/*.class,com/mfsoft/credit/viable/*.class" />            
+	        </jar>  
+	        <!--复制用到的库以及其他文件 -->
+	        <mkdir dir="${dir.deploy}/lib"/>
+	        <copy todir="${dir.deploy}/lib">
+	             <fileset dir="defaultroot/WEB-INF/lib" includes="classes12.jar,joone-engine.jar,log4j-1.2.9.jar"/>
+	        </copy>  
+	        <mkdir dir="${dir.deploy}/model"/> 
+	        <copy todir="${dir.deploy}/model">
+	             <fileset dir="WebContent/WEB-INF/classes" includes="com.lolita.*"/>
+	        </copy> 
+	    </target>	
+</project>

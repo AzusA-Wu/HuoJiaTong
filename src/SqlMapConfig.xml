@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<!-- 这个配置使全局的映射器启用或禁用缓存 -->
+		<setting name="cacheEnabled" value="true" />
+		<!-- 允许 JDBC 支持生成的键。需要适合的驱动。如果设置为 true 则这个设置强制生成的键被使用，尽管一些驱动拒绝兼容但仍然有效（比如 Derby） -->
+		<setting name="useGeneratedKeys" value="true" />
+		<!-- 配置默认的执行器。SIMPLE 执行器没有什么特别之处。REUSE 执行器重用预处理语句。BATCH 执行器重用语句和批量更新  -->
+		<setting name="defaultExecutorType" value="REUSE" />
+		<!-- 全局启用或禁用延迟加载。当禁用时，所有关联对象都会即时加载。 -->
+		<setting name="lazyLoadingEnabled" value="true"/>
+		<!-- 设置超时时间，它决定驱动等待一个数据库响应的时间。  -->
+		<setting name="defaultStatementTimeout" value="25000"/> 
+	</settings>
+	
+	<!-- 别名配置 -->
+	<typeAliases>
+  		<!-- 用户微信认证资料别名 -->
+  		<typeAlias alias="WechatData" type="com.lolita.model.WechatData"/>
+  		<!-- JSApi认证资料别名 -->
+  		<typeAlias alias="JSApi" type="com.lolita.model.JSApi"/>
+  		<!-- 用户别名 -->
+  		<typeAlias alias="User" type="com.lolita.model.User"/>
+  		<!-- 品牌别名 -->
+  		<typeAlias alias="Brand" type="com.lolita.model.Brand"/>
+  		<!-- 颜色别名 -->
+  		<typeAlias alias="Color" type="com.lolita.model.Color"/>
+  		<!-- 尺码别名 -->
+  		<typeAlias alias="Size" type="com.lolita.model.Size"/>
+  		<!-- 支付方式别名 -->
+  		<typeAlias alias="Pay" type="com.lolita.model.Pay"/>
+  		<!-- 入货别名 -->
+  		<typeAlias alias="Import" type="com.lolita.model.Import"/>
+  		<!-- 出货别名 -->
+  		<typeAlias alias="Export" type="com.lolita.model.Export"/>
+  		<!-- 商品别名 -->
+  		<typeAlias alias="Goods" type="com.lolita.model.Goods" />
+  		<!-- 商品来源别名 -->
+  		<typeAlias alias="GoodsSource" type="com.lolita.model.GoodsSource" />
+  		<!-- 商品类型别名 -->
+  		<typeAlias alias="GoodsType" type="com.lolita.model.GoodsType"/>
+  		<!-- 用户权限别名 -->
+  		<typeAlias alias="Permission" type="com.lolita.model.Permission"/>
+  		<!-- 用户权限组别名 -->
+  		<typeAlias alias="PermissionGroup" type="com.lolita.model.PermissionGroup"/>
+  		<!-- 权限与权限组关系别名 -->
+  		<typeAlias alias="PermissionRelation" type="com.lolita.model.PermissionRelation"/>
+  		<!-- 排班表别名 -->
+  		<typeAlias alias="Shift" type="com.lolita.model.Shift"/>
+  		<!-- 员工别名 -->
+  		<typeAlias alias="Staff" type="com.lolita.model.Staff"/>
+  		<!-- 会员别名 -->
+  		<typeAlias alias="Vip" type="com.lolita.model.Vip"/>
+  		<!-- 会员归属别名 -->
+  		<typeAlias alias="VipLocation" type="com.lolita.model.VipLocation"/>
+  		<!-- 手机验证码别名 -->
+  		<typeAlias alias="TelVerify" type="com.lolita.model.TelVerify"/>
+  		<!-- 第三方资料别名 -->
+  		<typeAlias alias="ThirdUser" type="com.lolita.model.ThirdUser"/>
+	</typeAliases>
+	
+	<!-- 指定映射器路径 -->
+	<!--自动扫描取代手工配置 -->
+	<mappers>
+		<mapper resource="com/lolita/dao/mapper/WechatDataMapper.xml"/>
+		<mapper resource="com/lolita/dao/mapper/GoodsMapper.xml"/>
+		<mapper resource="com/lolita/dao/mapper/BrandMapper.xml"/>
+		<mapper resource="com/lolita/dao/mapper/ColorMapper.xml"/>
+		<mapper resource="com/lolita/dao/mapper/SizeMapper.xml"/>
+		<mapper resource="com/lolita/dao/mapper/PayMapper.xml"/>
+		<mapper resource="com/lolita/dao/mapper/ImportMapper.xml"/>
+		<mapper resource="com/lolita/dao/mapper/ExportMapper.xml"/>
+		<mapper resource="com/lolita/dao/mapper/PermissionMapper.xml"/>
+		<mapper resource="com/lolita/dao/mapper/ShiftMapper.xml"/>
+		<mapper resource="com/lolita/dao/mapper/SourceMapper.xml"/>
+		<mapper resource="com/lolita/dao/mapper/StaffMapper.xml"/>
+		<mapper resource="com/lolita/dao/mapper/TypeMapper.xml"/>
+		<mapper resource="com/lolita/dao/mapper/VipMapper.xml"/>
+		<mapper resource="com/lolita/dao/mapper/TelVerifyMapper.xml"/>
+		<mapper resource="com/lolita/dao/mapper/ThirdUserMapper.xml"/>
+	</mappers>
+	 
+</configuration> 

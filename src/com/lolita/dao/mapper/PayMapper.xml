@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lolita.dao.PayMapper">
+	<resultMap id="PayResultMap" type="com.lolita.model.Pay">
+		<id column="pay_id" property="pay_id" jdbcType="INTEGER" />
+		<result column="pay_name" property="pay_name" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<!-- 获取支付方式列表 -->
+	<select id="getPayList" resultMap="PayResultMap">
+		select pay_id, pay_name
+		  from pay
+	</select>
+	
+	<!-- 添加支付方式 -->
+	<insert id="addPay" parameterType="Pay" useGeneratedKeys="true" keyProperty="pay_id">
+        insert into pay(pay_name)  
+          values(#{pay_name})
+    </insert>
+
+</mapper>

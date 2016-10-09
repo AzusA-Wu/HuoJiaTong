@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lolita.dao.VipMapper">
+	<resultMap id="VipResultMap" type="com.lolita.model.Vip">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="vip_id" property="vip_id" jdbcType="VARCHAR" />
+		<result column="vip_name" property="vip_name" jdbcType="VARCHAR" />
+		<result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="other_contact" property="other_contact"
+			jdbcType="VARCHAR" />
+		<result column="location" property="location" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<resultMap id="VipLocationResultMap" type="com.lolita.model.VipLocation">
+		<id column="location_id" property="location_id" jdbcType="INTEGER" />
+		<result column="location_name" property="location_name" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!-- 添加会员 -->
+	<insert id="addVip" parameterType="Vip" useGeneratedKeys="true"
+		keyProperty="id">
+		insert into vip(vip_id, vip_name, birthday, phone,
+		other_contact, location) values(#{vip_id}, #{vip_name}, #{birthday},
+		#{phone}, #{other_contact}, #{location})
+	</insert>
+
+	<!-- 修改会员资料 -->
+	<update id="updateVip" parameterType="Vip">
+		update vip set
+		vip_name=#{vip_name}, birthday=#{birthday}, phone=#{phone},
+		other_contact=#{other_contact}, location=#{location}
+		where
+		vip_id=#{vip_id}
+	</update>
+
+	<!-- 通过用户账号查找会员 -->
+	<select id="getVipById" parameterType="String" resultMap="VipResultMap">
+		select id, vip_id, vip_name, birthday, phone, other_contact, location
+		  from vip
+		where vip_id=#{vip_id}
+		limit 1
+	</select>
+
+	<!-- 获取会员列表 -->
+	<select id="getVipList"  resultMap="VipResultMap">
+		select id, vip_id, vip_name, birthday, phone, other_contact, location
+		  from vip
+	</select>
+	
+	<!-- 获取归属地 -->
+	<select id="getLocation" parameterType="Integer" resultMap="VipLocationMapper">
+	    select location_id, location_name
+	      from vip_location
+	    where location_id=#{location_id}
+	</select>
+	
+	<!-- 添加归属地 -->
+	<insert id="addLocation" parameterType="String" useGeneratedKeys="true" keyProperty="location_id">
+	    insert into vip_location(location_name) values(#{location_name})
+	</insert>
+	
+	<!-- 获取归属地列表 -->
+	<select id="getLocationList" resultMap="VipLocationResultMap">
+	    select location_id, location_name
+	      from vip_location
+	</select>
+
+</mapper>

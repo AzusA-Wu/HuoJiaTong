@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lolita.dao.PermissionMapper">
+	<resultMap id="PermissionResultMap" type="com.lolita.model.Permission">
+		<id column="permission_id" property="permission_id" jdbcType="INTEGER" />
+		<result column="permission" property="permission" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<resultMap id="PermissionGroupResultMap" type="com.lolita.model.PermissionGroup">
+	    <id column="group_id" property="group_id" jdbcType="INTEGER" />
+	    <result column="group_name" property="group_name" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<resultMap id="PermissionRelationResultMap" type="com.lolita.model.PermissionRelation">
+	    <id column="relation_id" property="relation_id" jdbcType="INTEGER"/>
+	    <result column="group_id" property="group_id" jdbcType="INTEGER"/>
+	    <result column="permission_id" property="Permission_id" jdbcType="INTEGER"/>
+	</resultMap>
+
+	<!-- 添加权限 -->
+	<insert id="addPermission" parameterType="Permission" useGeneratedKeys="true"
+		keyProperty="permission_id">
+		insert into user(account, password, name, permission_group)
+		  values(#{account}, #{password}, #{name}, #{permission_group})
+	</insert>
+
+	<!-- 修改权限名 -->
+	<update id="updatePermission" parameterType="Permission">
+		update permission set  permission=#{permission}
+		where permission_id=#{permission_id}
+	</update>
+	
+	<!-- 创建权限组 -->
+	<insert id="addPermissionGroup" parameterType="PermissionGroup" useGeneratedKeys="true"
+		keyProperty="group_id">
+		insert into permission_group(group_name)
+		  values(#{group_name})
+	</insert>
+	
+	<!-- 修改权限组 -->
+	<update id="updatePermissionGroup" parameterType="PermissionGroup">
+		update permission_group set  group_name=#{group_name}
+		where group_id=#{group_id}
+	</update>
+	
+	<!-- 删除权限组 -->
+	<delete id="deletePermissionGroup" parameterType="int">
+	    delete from permission_group
+	      where group_id=#{group_id}
+	</delete>
+	
+	<!-- 获取权限组列表 -->
+	<select id="getPermissionGroupList" resultMap="PermissionGroupResultMap">
+	    select group_id, group_name
+	      from permission_group
+	</select>
+	
+	<!-- 通过id获取权限组 -->
+	<select id="getPermissionGroupById" parameterType="int" resultMap="PermissionGroupResultMap">
+		select group_id, group_name
+	      from permission_group
+		where group_id=#{group_id}
+	</select>
+	
+	<!-- 添加权限至权限组 -->
+	<insert id="addPermissionToGroup" parameterType="PermissionRelation" useGeneratedKeys="true"
+		keyProperty="relation_id">
+		insert into permission_relation(group_id, permission_id)
+		  values(#{group_id}, #{permission_id})
+	</insert>
+	
+	<!-- 从权限组删除权限 -->
+	<delete id="deletePermissionFromGroup" parameterType="PermissionRelation">
+	    delete from permission_relation
+	      where group_id=#{group_id} and permission_id=#{permission_id}
+	</delete>
+	
+	<!-- 通过权限组id获取权限组内的权限列表 -->
+	<select id="getPermissionByGroup" parameterType="int" resultMap="PermissionRelationResultMap">
+	    select relation_id, group_id, permission_id
+	      from permission_relation
+	    where group_id=#{group_id}
+	</select>
+	
+	<!-- 删除权限组时删除组<->权限之间关系 -->
+	<delete id="deleteRelationByGroup" parameterType="int">
+	    delete from permission_relation
+	      where group_id=#{group_id}
+	</delete>
+</mapper>
