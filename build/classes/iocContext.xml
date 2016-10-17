@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+  http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+  http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+  http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+	<!-- 数据映射器类 mapper bean -->
+	<bean id="wechatDataMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="SqlSessionFactory" />
+		<property name="mapperInterface" value="com.lolita.dao.WechatDataMapper" />
+	</bean>
+	<bean id="UserMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="SqlSessionFactory" />
+		<property name="mapperInterface" value="com.lolita.dao.UserMapper" />
+	</bean>
+	<bean id="BrandMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="SqlSessionFactory" />
+		<property name="mapperInterface" value="com.lolita.dao.BrandMapper" />
+	</bean>
+	<bean id="PayrMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="SqlSessionFactory" />
+		<property name="mapperInterface" value="com.lolita.dao.PayMapper" />
+	</bean>
+	<bean id="ColorMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="SqlSessionFactory" />
+		<property name="mapperInterface" value="com.lolita.dao.ColorMapper" />
+	</bean>
+	<bean id="ExportMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="SqlSessionFactory" />
+		<property name="mapperInterface" value="com.lolita.dao.ExportMapper" />
+	</bean>
+	<bean id="ImportMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="SqlSessionFactory" />
+		<property name="mapperInterface" value="com.lolita.dao.ImportMapper" />
+	</bean>
+	<bean id="PermissionMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="SqlSessionFactory" />
+		<property name="mapperInterface" value="com.lolita.dao.PermissionMapper" />
+	</bean>
+	<bean id="SizeMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="SqlSessionFactory" />
+		<property name="mapperInterface" value="com.lolita.dao.SizeMapper" />
+	</bean>
+	<bean id="ShiftMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="SqlSessionFactory" />
+		<property name="mapperInterface" value="com.lolita.dao.ShiftMapper" />
+	</bean>
+	<bean id="SourceMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="SqlSessionFactory" />
+		<property name="mapperInterface" value="com.lolita.dao.SourceMapper" />
+	</bean>
+	<bean id="StaffMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="SqlSessionFactory" />
+		<property name="mapperInterface" value="com.lolita.dao.StaffMapper" />
+	</bean>
+	<bean id="TypeMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="SqlSessionFactory" />
+		<property name="mapperInterface" value="com.lolita.dao.TypeMapper" />
+	</bean>
+	<bean id="VipMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="SqlSessionFactory" />
+		<property name="mapperInterface" value="com.lolita.dao.VipMapper" />
+	</bean>
+	<bean id="GoodsMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="SqlSessionFactory" />
+		<property name="mapperInterface" value="com.lolita.dao.GoodsMapper" />
+	</bean>
+	<bean id="TelVerifyMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="SqlSessionFactory" />
+		<property name="mapperInterface" value="com.lolita.dao.TelVerifyMapper" />
+	</bean>
+	<bean id="ThirdUserMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	    <property name="sqlSessionFactory" ref="SqlSessionFactory" />
+		<property name="mapperInterface" value="com.lolita.dao.ThirdUserMapper" />
+	</bean>
+
+</beans>

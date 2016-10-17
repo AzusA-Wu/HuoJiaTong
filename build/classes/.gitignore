@@ -1,9 +1,1 @@
-/SqlMapConfig.xml
-/aopContext.xml
-/applicationContext.xml
 /com/
-/daoContext.xml
-/freemarker.properties
-/iocContext.xml
-/log4j.properties
-/mvcContext.xml

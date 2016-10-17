@@ -119,4 +119,5 @@ public class UserController {
         map.addAttribute("name", "PPAP");
         return "/hello.ftl";
     }
+	
 }
