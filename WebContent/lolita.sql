@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2016-10-17 14:37:01
+Date: 2016-10-31 15:19:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -107,7 +107,7 @@ CREATE TABLE `goods_source` (
 -- ----------------------------
 DROP TABLE IF EXISTS `goods_type`;
 CREATE TABLE `goods_type` (
-  `type_id` int(4) NOT NULL COMMENT '类型id',
+  `type_id` int(4) unsigned NOT NULL AUTO_INCREMENT COMMENT '类型id',
   `type_name` varchar(64) NOT NULL COMMENT '类型名',
   `status` int(1) NOT NULL COMMENT '状态：0有效；1无效',
   PRIMARY KEY (`type_id`)
