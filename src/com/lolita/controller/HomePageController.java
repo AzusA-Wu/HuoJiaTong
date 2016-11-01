@@ -46,6 +46,6 @@ public class HomePageController {
 
 		Map<String, Object> data = new HashMap<String, Object>();
 //		data.put("username", user.getName());
-		return new ModelAndView("index.html", data);
+		return new ModelAndView("/h-ui/index.html", data);
 	}
 }
