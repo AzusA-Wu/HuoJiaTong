@@ -27,7 +27,9 @@
 			</value>
 		</property>
 	</bean> -->
-
+	<!-- 添加default-servlet-handler, 会允许直接访问目标资源 -->
+	<mvc:default-servlet-handler/>
+	
 	<!-- 注解支持 -->
 	<mvc:annotation-driven />
 
