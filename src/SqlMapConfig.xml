@@ -79,6 +79,7 @@
 		<mapper resource="com/lolita/dao/mapper/StaffMapper.xml"/>
 		<mapper resource="com/lolita/dao/mapper/TypeMapper.xml"/>
 		<mapper resource="com/lolita/dao/mapper/VipMapper.xml"/>
+		<mapper resource="com/lolita/dao/mapper/UserMapper.xml"/>
 		<mapper resource="com/lolita/dao/mapper/TelVerifyMapper.xml"/>
 		<mapper resource="com/lolita/dao/mapper/ThirdUserMapper.xml"/>
 	</mappers>

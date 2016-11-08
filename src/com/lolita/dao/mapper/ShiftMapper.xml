@@ -31,7 +31,7 @@
 	</delete>
 
 	<!-- 获取排班列表 -->
-	<select id="getShiftListByDate" parameterType="Shift" resultMap="VipResultMap">
+	<select id="getShiftListByDate" parameterType="Shift" resultMap="ShiftResultMap">
 		select shift_id, staff_id, starttime, endtime, user_id, time
 		  from shift
 		where starttime &gt; #{starttime} and endtime &lt; #{endtime}

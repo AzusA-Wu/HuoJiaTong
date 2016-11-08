@@ -31,7 +31,7 @@
 	</select>
 
 	<!-- 获取员工列表 -->
-	<select id="getStaffList" parameterType="int" resultMap="VipResultMap">
+	<select id="getStaffList" parameterType="int" resultMap="StaffResultMap">
 		select staff_id, staff_name, staff_nickname, staff_status
 		  from staff
 		<if test="2 > status">

@@ -30,6 +30,13 @@
 		where user_id=#{user_id}
 		limit 1
 	</select>
+	
+	<!-- 通过用户账号获取用户 -->
+	<select id="getUserByAccount" parameterType="String" resultMap="UserResultMap">
+	    select user_id, name, permission_group
+	      from user
+	    where account=#{account}
+	</select>
 
 	<!-- 获取用户列表 -->
 	<select id="getUserList" parameterType="int" resultMap="UserResultMap">

@@ -49,7 +49,7 @@
 	</select>
 	
 	<!-- 获取归属地 -->
-	<select id="getLocation" parameterType="Integer" resultMap="VipLocationMapper">
+	<select id="getLocation" parameterType="Integer" resultMap="VipLocationResultMap">
 	    select location_id, location_name
 	      from vip_location
 	    where location_id=#{location_id}

@@ -8,13 +8,13 @@
 	</resultMap>
 	
 	<!-- 获取颜色列表 -->
-	<select id="getColorList" resultMap="CcolorResultMap">
+	<select id="getColorList" resultMap="ColorResultMap">
 		select color_id, color_name, status
 		  from color
 	</select>
 	
 	<!-- 通过id获取颜色-->
-	<select id="getColorById" parameterType="int" resultMap="CcolorResultMap">
+	<select id="getColorById" parameterType="int" resultMap="ColorResultMap">
 		select color_id, color_name, status
 		  from color
 		where color_id=#{color_id}
