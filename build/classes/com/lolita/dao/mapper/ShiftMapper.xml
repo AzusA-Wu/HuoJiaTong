@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lolita.dao.ShiftMapper">
+	<resultMap id="ShiftResultMap" type="com.lolita.model.Shift">
+		<id column="shift_id" property="shift_id" jdbcType="INTEGER" />
+		<result column="staff_id" property="staff_id" jdbcType="INTEGER" />
+		<result column="starttime" property="starttime" jdbcType="TIMESTAMP" />
+		<result column="endtime" property="endtime" jdbcType="TIMESTAMP" />
+		<result column="user_id" property="user_id" jdbcType="INTEGER" />
+		<result column="time" property="time" jdbcType="TIMESTAMP"/>
+	</resultMap>
+
+	<!-- 添加排班 -->
+	<insert id="addShift" parameterType="Shift" useGeneratedKeys="true"
+		keyProperty="shift_id">
+		insert into shift(staff_id, starttime, endtime, user_id, time)
+		  values(#{staff_id}, #{starttime}, #{endtime}, #{user_id}, #{time})
+	</insert>
+
+	<!-- 修改排班 -->
+	<update id="updateShift" parameterType="Shift">
+		update shift set
+		staff_id=#{staff_id}, starttime=#{starttime}, endtime=#{endtime}, user_id=#{user_id}, time=#{time}
+		where shift_id=#{shift_id}
+	</update>
+
+	<!-- 删除排班 -->
+	<delete id="deleteShift" parameterType="int">
+	    delete from shift
+	      where shift_id=#{shift_id}
+	</delete>
+
+	<!-- 获取排班列表 -->
+	<select id="getShiftListByDate" parameterType="Shift" resultMap="VipResultMap">
+		select shift_id, staff_id, starttime, endtime, user_id, time
+		  from shift
+		where starttime &gt; #{starttime} and endtime &lt; #{endtime}
+	</select>
+
+</mapper>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lolita.dao.ExportMapper">
+	<resultMap id="ExportResultMap" type="com.lolita.model.Export">
+		<id column="export_id" property="export_id" jdbcType="INTEGER" />
+		<result column="goods_id" property="goods_id" jdbcType="INTEGER" />
+		<result column="export_price" property="export_price" jdbcType="FLOAT" />
+		<result column="amount" property="amount" jdbcType="INTEGER" />
+		<result column="user_id" property="user_id" jdbcType="INTEGER" />
+		<result column="export_time" property="export_time" jdbcType="TIMESTAMP" />
+		<result column="vip_id" property="vip_id" jdbcType="INTEGER" />
+		<result column="pay_id" property="pay_id" jdbcType="INTEGER" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<!-- 添加出货记录 -->
+	<insert id="addExport" parameterType="Export" useGeneratedKeys="true" keyProperty="export_id">
+	  insert into import(goods_id, export_price, amount, user_id, export_time, vip_id, pay_id, remark)
+	    values(#{goods_id}, #{export_price}, #{amount}, #{user_id}, #{export_time}, #{vip_id}, #{pay_id}, #{remark})
+	</insert>
+	
+	<!-- 查看出货记录列表 -->
+	<select id="getExportList" resultMap="ExportResultMap">
+	  select export_id, goods_id, export_price, amount, user_id, export_time, vip_id, pay_id, remark
+	    from export
+	  order by export_id desc
+	</select>
+	
+	<!-- 通过id获取出货记录 -->
+	<select id="getExportById" parameterType="int" resultMap="ExportResultMap">
+	  select export_id, goods_id, export_price, amount, user_id, export_time, vip_id, pay_id, remark
+	    from export
+	  where export_id={#export_id}
+	  order by export_id desc
+	</select>
+
+</mapper>

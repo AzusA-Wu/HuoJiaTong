@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lolita.dao.ThirdUserMapper" >
+  <resultMap id="ThirdUserResultMap" type="com.lolita.model.ThirdUser" >
+    <id column="third_id" property="third_id" jdbcType="INTEGER" />
+    <result column="sina_id" property="sina_id" jdbcType="VARCHAR" />
+    <result column="openid" property="openid" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="avatar" property="avatar" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <insert id="addSinaUser" parameterType="ThirdUser" useGeneratedKeys="true" keyProperty="id">
+    insert into third_user(sina_id, name, avatar, gender, description)
+    values(#{sina_id}, #{name}, #{avatar}, #{gender}, #{description})
+  </insert>
+  
+  <insert id="addWecharUser" parameterType="ThirdUser" useGeneratedKeys="true" keyProperty="id">
+    insert into third_user(openid, name, avatar, gender)
+    values(#{openid}, #{name}, #{avatar}, #{gender})
+  </insert>
+  
+</mapper>

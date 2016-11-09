@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lolita.dao.BrandMapper">
+	<resultMap id="BrandResultMap" type="com.lolita.model.Brand">
+		<id column="brand_id" property="brand_id" jdbcType="INTEGER" />
+		<result column="brand_name" property="brand_name" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<!-- 获取品牌列表 -->
+	<select id="getBrandList" parameterType="int" resultMap="BrandResultMap">
+		select brand_id, brand_name, status
+		  from brand
+		<if test="2 > status">
+			where status = #{status}
+		</if>
+	</select>
+	
+	<!-- 通过id获取品牌 -->
+	<select id="getBrandById" parameterType="int" resultMap="BrandResultMap">
+		select brand_id, brand_name, status
+		  from brand
+		where brand_id=#{brand_id}
+	</select>
+	
+	<!-- 通过品牌名获取品牌 -->
+	<select id="checkBrand" parameterType="String" resultMap="BrandResultMap">
+		select brand_id, brand_name, status
+		  from brand
+		where brand_name=#{brand_name}
+	</select>
+	
+	<!-- 添加品牌 -->
+	<insert id="addBrand" parameterType="Brand" useGeneratedKeys="true" keyProperty="brand_id">
+        insert into brand(brand_name, status)  
+          values(#{brand_name}, #{status})
+    </insert>
+    
+    <!-- 修改品牌 -->
+    <update id="updateBrand" parameterType="Brand">
+        update brand
+        set brand_name=#{brand_name}, status=#{status}
+        where brand_id=#{brand_id}
+    </update>
+
+</mapper>

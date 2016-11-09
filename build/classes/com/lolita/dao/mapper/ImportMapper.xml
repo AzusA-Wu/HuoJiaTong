@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lolita.dao.ImportMapper">
+	<resultMap id="ImportResultMap" type="com.lolita.model.Import">
+		<id column="import_id" property="import_id" jdbcType="INTEGER" />
+		<result column="goods_id" property="goods_id" jdbcType="INTEGER" />
+		<result column="import_price" property="import_price" jdbcType="FLOAT" />
+		<result column="amount" property="amount" jdbcType="INTEGER" />
+		<result column="source_id" property="source_id" jdbcType="INTEGER" />
+		<result column="user_id" property="user_id" jdbcType="INTEGER" />
+		<result column="import_time" property="import_time" jdbcType="TIMESTAMP" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<!-- 添加入货记录 -->
+	<insert id="addImport" parameterType="Import" useGeneratedKeys="true" keyProperty="import_id">
+	  insert into import(goods_id, import_price, amount, source_id, user_id, import_time, remark)
+	    values(#{goods_id}, #{import_price}, #{amount}, #{source_id}, #{user_id}, #{import_time}, #{remark})
+	</insert>
+	
+	<!-- 查看入货记录列表 -->
+	<select id="getImportList" resultMap="ImportResultMap">
+	  select import_id, goods_id, import_price, amount, source_id, user_id, import_time, remark
+	    from import
+	  order by import_id desc
+	</select>
+	
+	<!-- 通过id获取入货记录 -->
+	<select id="getImportById" parameterType="int" resultMap="ImportResultMap">
+	  select import_id, goods_id, import_price, amount, source_id, user_id, import_time, remark
+	    from import
+	  where import_id={#import_id}
+	  order by import_id desc
+	</select>
+
+</mapper>

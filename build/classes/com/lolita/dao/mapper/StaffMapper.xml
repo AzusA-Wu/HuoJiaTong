@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lolita.dao.StaffMapper">
+	<resultMap id="StaffResultMap" type="com.lolita.model.Staff">
+		<id column="staff_id" property="staff_id" jdbcType="INTEGER" />
+		<result column="staff_name" property="staff_name" jdbcType="VARCHAR" />
+		<result column="staff_nickname" property="staff_nickname" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+	</resultMap>
+
+	<!-- 添加员工 -->
+	<insert id="addStaff" parameterType="Staff" useGeneratedKeys="true"
+		keyProperty="staff_id">
+		insert into staff(staff_name, staff_nickname, status)
+		  values(#{staff_name}, #{staff_nickname}, #{status})
+	</insert>
+
+	<!-- 修改员工资料 -->
+	<update id="updateStaff" parameterType="Staff">
+		update staff set
+		staff_name=#{staff_name}, staff_nickname=#{staff_nickname}, status=#{status}
+		where staff_id=#{staff_id}
+	</update>
+
+	<!-- 通过员工id查找员工 -->
+	<select id="getStaffById" parameterType="int" resultMap="StaffResultMap">
+		select staff_id, staff_name, staff_nickname, staff_status
+		  from staff
+		where staff_id=#{staff_id}
+		limit 1
+	</select>
+
+	<!-- 获取员工列表 -->
+	<select id="getStaffList" parameterType="int" resultMap="VipResultMap">
+		select staff_id, staff_name, staff_nickname, staff_status
+		  from staff
+		<if test="2 > status">
+			where status = #{status}
+		</if>
+	</select>
+
+</mapper>

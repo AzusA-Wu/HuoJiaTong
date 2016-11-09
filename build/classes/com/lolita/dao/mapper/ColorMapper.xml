@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lolita.dao.ColorMapper">
+	<resultMap id="ColorResultMap" type="com.lolita.model.Color">
+		<id column="color_id" property="color_id" jdbcType="INTEGER" />
+		<result column="color_name" property="color_name" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<!-- 获取颜色列表 -->
+	<select id="getColorList" resultMap="CcolorResultMap">
+		select color_id, color_name, status
+		  from color
+	</select>
+	
+	<!-- 通过id获取颜色-->
+	<select id="getColorById" parameterType="int" resultMap="CcolorResultMap">
+		select color_id, color_name, status
+		  from color
+		where color_id=#{color_id}
+	</select>
+	
+	<!-- 添加颜色 -->
+	<insert id="addColor" parameterType="Color" useGeneratedKeys="true" keyProperty="color_id">
+        insert into color(color_name, status)  
+          values(#{color_name}, #{status})
+    </insert>
+    
+    <!-- 修改颜色 -->
+    <update id="updateColor" parameterType="Color">
+        update color
+        set color_name=#{color_name}, status=#{status}
+        where color_id=#{color_id}
+    </update>
+
+</mapper>

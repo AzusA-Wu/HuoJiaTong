@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lolita.dao.TelVerifyMapper" >
+  <resultMap id="TelVerifyResultMap" type="com.lolita.model.TelVerify" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="yzm" property="yzm" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <insert id="addTelVerify" parameterType="TelVerify" useGeneratedKeys="true" keyProperty="id">
+    insert into telyzm(tel, yzm) values(#{tel}, #{yzm})
+  </insert>
+  
+  <update id="updateTelVerify" parameterType="TelVerify">
+    update telyzm set yzm=#{yzm}
+      where tel=#{tel}
+  </update>
+  
+  <select id="getVerifyByTel" parameterType="String" resultMap="TelVerifyResultMap">
+    select id, tel, yzm
+      from telyzm
+    where tel=#{tel}
+    order by id desc
+    limit 1
+  </select>
+  
+  <delete id="deleteVerifyByTel" parameterType="String">
+    delete from telyzm where tel=#{tel}
+  </delete>
+  
+</mapper>

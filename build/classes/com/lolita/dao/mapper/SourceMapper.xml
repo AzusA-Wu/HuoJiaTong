@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lolita.dao.SourceMapper">
+	<resultMap id="SourceResultMap" type="com.lolita.model.GoodsSource">
+		<id column="source_id" property="source_id" jdbcType="INTEGER" />
+		<result column="source_name" property="source_name" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<!-- 添加货源 -->
+	<insert id="addSource" parameterType="String"
+		useGeneratedKeys="true" keyProperty="source_id">
+		insert into goods_source(source_name) values(#{source_name})
+	</insert>
+	
+	<!-- 更新货源 -->
+	<update id="updateSource" parameterType="GoodsSource">
+		update goods_source set source_name=#{source_name}, status=#{status}
+		where source_id=#{source_id}
+	</update>
+
+	<!-- 获取货源列表 -->
+	<select id="getSourceList" resultMap="SourceResultMap">
+		select source_id, source_name, status
+		from goods_source
+	</select>
+	
+	<!-- 通过id获取货源 -->
+	<select id="getSourceById" parameterType="Integer" resultMap="SourceResultMap">
+		select source_id, source_name, status
+		from goods_source
+		where source_id=#{source_id}
+	</select>
+
+	<!-- 检查货源是否已经存在 -->
+	<select id="checkSource" parameterType="String" resultMap="SourceResultMap">
+		select source_id, source_name
+		from goods_source
+		where source_name=#{source_name}
+	</select>
+
+</mapper>

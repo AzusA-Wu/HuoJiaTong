@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lolita.dao.TypeMapper">
+	<resultMap id="TypeResultMap" type="com.lolita.model.GoodsType">
+		<id column="type_id" property="type_id" jdbcType="INTEGER" />
+		<result column="type_name" property="type_name" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<!-- 添加商品类型 -->
+	<insert id="addType" parameterType="GoodsType"
+		useGeneratedKeys="true" keyProperty="type_id">
+		insert into goods_type(type_name, status) values(#{type_name}, #{status})
+	</insert>
+	
+	<!-- 更新商品类型 -->
+	<update id="updateType" parameterType="GoodsType">
+		update goods_type set type_name=#{type_name}, status=#{status}
+		where type_id=#{type_id}
+	</update>
+
+	<!-- 获取商品类型列表 -->
+	<select id="getTypeList" parameterType="Integer" resultMap="TypeResultMap">
+		select type_id, type_name, status
+		from goods_type
+		<if test="2 > status">
+			where status = #{status}
+		</if>
+	</select>
+
+	<!-- 检查商品类型是否已经存在 -->
+	<select id="checkType" parameterType="String" resultMap="TypeResultMap">
+		select type_id, type_name, status
+		from goods_type
+		where type_name=#{type_name}
+	</select>
+
+</mapper>
