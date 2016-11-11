@@ -3,8 +3,8 @@
 <mapper namespace="com.lolita.dao.UserMapper">
 	<resultMap id="UserResultMap" type="com.lolita.model.User">
 		<id column="user_id" property="user_id" jdbcType="INTEGER" />
-		<result column="account" property="user_name" jdbcType="VARCHAR" />
-		<result column="password" property="user_nickname" jdbcType="VARCHAR" />
+		<result column="account" property="account" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
 		<result column="permission_group" property="permission_group" jdbcType="INTEGER" />
 	</resultMap>
@@ -25,7 +25,7 @@
 
 	<!-- 通过用户id查找用户 -->
 	<select id="getUserById" parameterType="int" resultMap="UserResultMap">
-		select user_id, name, permission_group
+		select user_id, account, password, name, permission_group
 		  from user
 		where user_id=#{user_id}
 		limit 1
@@ -33,14 +33,14 @@
 	
 	<!-- 通过用户账号获取用户 -->
 	<select id="getUserByAccount" parameterType="String" resultMap="UserResultMap">
-	    select user_id, name, permission_group
+	    select user_id, account, password, name, permission_group
 	      from user
 	    where account=#{account}
 	</select>
 
 	<!-- 获取用户列表 -->
 	<select id="getUserList" parameterType="int" resultMap="UserResultMap">
-		select user_id, name, permission_group
+		select user_id, account, password, name, permission_group
 		  from user
 	</select>
 

@@ -40,6 +40,10 @@ public class UserService implements IUserService {
 
 		try {
 			User user = userMapper.getUserByAccount(account);
+			System.out.println(account);
+			System.out.println(password);
+			System.out.println(user.getAccount());
+			System.out.println(user.getPassword());
 			if (null == user) {
 				jo = resultJSON.createResultJSON(ResultCode.USER_ACCOUNT_ERROR);// 账号错误
 			} else if (!password.equals(user.getPassword())) {
