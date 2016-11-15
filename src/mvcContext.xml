@@ -87,7 +87,7 @@
 	<bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape" />
 
 	<!-- 配置freeMarker视图解析器 -->
-	<bean id="viewResolver"
+	<bean id="freemarkerViewResolver"
 		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />

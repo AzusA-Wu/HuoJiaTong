@@ -44,6 +44,12 @@ public class HomePageController {
 
 		Map<String, Object> data = new HashMap<String, Object>();
 //		data.put("username", user.getName());
-		return new ModelAndView("/h-ui/index.html", data);
+		return new ModelAndView("h-ui/index.ftl", data);
+	}
+	@RequestMapping(value = "welcome.do", method = RequestMethod.GET)
+	public ModelAndView welcome() throws Exception {
+		Map<String, Object> data = new HashMap<String, Object>();
+//		data.put("username", user.getName());
+		return new ModelAndView("h-ui/welcome.ftl", data);
 	}
 }
