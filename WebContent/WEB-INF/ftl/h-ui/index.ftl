@@ -99,7 +99,7 @@
 					<li><a _href="#" data-title="出货" href="javascript:void(0)">出货</a></li>
 					<li><a _href="#" data-title="预订" href="javascript:void(0)">预订</a></li>
 					<li><a _href="#" data-title="出入货记录" href="javascript:void(0)">出入货记录</a></li>
-					<li><a _href="#" data-title="商品库存资料" href="javascript:void(0)">商品库存资料</a></li>
+					<li><a _href="goods/listPage.do" data-title="商品库存资料" href="javascript:void(0)">商品库存资料</a></li>
 				</ul>
 			</dd>
 		</dl>

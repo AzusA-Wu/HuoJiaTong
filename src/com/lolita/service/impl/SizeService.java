@@ -47,7 +47,7 @@ public class SizeService implements ISizeService{
 	
 	//获取尺寸列表
 	@Transactional(propagation = Propagation.REQUIRED)
-	public String getSizeList(){
+	public String getSizeListJson(){
 		
 		//构建json
 		JSONObject jo = new JSONObject();
@@ -72,5 +72,10 @@ public class SizeService implements ISizeService{
 		}
 		
 		return jo.toString();
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRED)
+	public List<Size> getSizeList(){
+		return sizeMapper.getSizeList();
 	}
 }

@@ -28,7 +28,7 @@ public class ColorService implements IColorService{
 	
 	//获取颜色列表
 	@Transactional(propagation = Propagation.REQUIRED)
-	public String getColorList(Integer status){
+	public String getColorListJson(Integer status){
 		
 		//构建json
 		JSONObject jo = new JSONObject();
@@ -55,6 +55,11 @@ public class ColorService implements IColorService{
 		}
 		
 		return jo.toString();
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRED)
+	public List<Color> getColorList(Integer status){
+		return colorMapper.getColorList(status);
 	}
 	
 	//添加颜色

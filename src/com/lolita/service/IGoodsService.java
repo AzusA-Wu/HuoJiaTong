@@ -1,5 +1,9 @@
 package com.lolita.service;
 
+import java.util.List;
+
+import com.lolita.model.Goods;
+
 public interface IGoodsService {
 
 	// 添加商品
@@ -13,7 +17,9 @@ public interface IGoodsService {
 			float standard_price, String remark);
 
 	// 获取商品列表
-	public String getGoodsList();
+	public String getGoodsListJson();
+	
+	public List<Goods> getGoodsList();
 
 	// 通过id获取商品资料
 	public String getGoodsById(Integer goods_id);

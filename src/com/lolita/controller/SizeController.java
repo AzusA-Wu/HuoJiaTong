@@ -19,7 +19,7 @@ public class SizeController {
 	// getsizelist.do
 	@RequestMapping(value = "getsizelist.do", produces = "text/json;charset=UTF-8")
 	public @ResponseBody String getSizeList() {
-		return sizeService.getSizeList();
+		return sizeService.getSizeListJson();
 	}
 
 	// 添加归属地

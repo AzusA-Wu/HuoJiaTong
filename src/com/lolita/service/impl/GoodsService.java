@@ -98,7 +98,7 @@ public class GoodsService implements IGoodsService{
 
 	// 获取商品列表
 	@Transactional(propagation = Propagation.REQUIRED)
-	public String getGoodsList() {
+	public String getGoodsListJson() {
 
 		// 构建json
 		JSONObject jo = new JSONObject();
@@ -121,6 +121,11 @@ public class GoodsService implements IGoodsService{
 		}
 
 		return jo.toString();
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRED)
+	public List<Goods> getGoodsList() {
+		return goodsMapper.getGoodsList();
 	}
 
 	// 通过id获取商品资料

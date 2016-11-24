@@ -19,7 +19,7 @@ public class BrandController {
 	//getlist.do?status=xx
 	@RequestMapping(value = "getlist.do", produces = "text/json;charset=UTF-8")
 	public @ResponseBody String getBrandList(Integer status){
-		return brandService.getBrandList(status);
+		return brandService.getBrandListJson(status);
 	}
 	
 	//添加品牌

@@ -19,7 +19,7 @@ public class ColorController {
 	//getlist.do?status=xx
 	@RequestMapping(value = "getlist.do", produces = "text/json;charset=UTF-8")
 	public @ResponseBody String getColorList(Integer status){
-		return colorService.getColorList(status);
+		return colorService.getColorListJson(status);
 	}
 	
 	//添加颜色

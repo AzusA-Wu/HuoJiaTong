@@ -97,6 +97,7 @@
 		<property name="prefix" value="" />
 		<property name="suffix" value="" />
 		<property name="order" value="2" />
+		<property name="requestContextAttribute" value="request" />
 	</bean>
 	<!-- FreeMarker结束 -->
 

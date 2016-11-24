@@ -28,7 +28,7 @@ public class BrandService implements IBrandService {
 
 	// 获取品牌列表
 	@Transactional(propagation = Propagation.REQUIRED)
-	public String getBrandList(Integer status) {
+	public String getBrandListJson(Integer status) {
 
 		// 构建json
 		JSONObject jo = new JSONObject();
@@ -43,6 +43,11 @@ public class BrandService implements IBrandService {
 		}
 
 		return jo.toString();
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRED)
+	public List<Brand> getBrandList(Integer status) {
+		return brandMapper.getBrandList(status);//0：获取有效品牌；1:获取无效品牌；2：获取所有品牌
 	}
 
 	// 添加品牌
